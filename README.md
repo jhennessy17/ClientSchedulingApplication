@@ -1,11 +1,18 @@
-#Software 2 Database Management GUI
-#author: Jeremy Hennessy
-#student application version: 1.0
-#date: 6/8/2021
-#IDE: IntelliJ 2020.3.2
-#JDK 11.0.10
-#JavaFX-sdk-11.0.2
-#MySQL-connector-java-8.0.22
+Software 2 Database Management GUI
+
+author: Jeremy Hennessy
+
+student application version: 1.0
+
+date: 6/8/2021
+
+IDE: IntelliJ 2020.3.2
+
+JDK 11.0.10
+
+JavaFX-sdk-11.0.2
+
+MySQL-connector-java-8.0.22
 
 
 == Purpose ==
@@ -25,4 +32,5 @@ interface using combo box selections.  To modify or delete an appointment or cus
 be selected from it's corresponding table.  No customers with upcoming appointments can be deleted.
 
 == Extra Report ==
+
 The extra report generated is a schedule for each customer in the database
