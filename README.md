@@ -1,12 +1,11 @@
-Software 2 Database Management GUI
-author: Jeremy Hennessy
-contact: jhenn44@wgu.edu
-student application version: 1.0
-date: 6/8/2021
-IDE: IntelliJ 2020.3.2
-JDK 11.0.10
-JavaFX-sdk-11.0.2
-MySQL-connector-java-8.0.22
+#Software 2 Database Management GUI
+#author: Jeremy Hennessy
+#student application version: 1.0
+#date: 6/8/2021
+#IDE: IntelliJ 2020.3.2
+#JDK 11.0.10
+#JavaFX-sdk-11.0.2
+#MySQL-connector-java-8.0.22
 
 
 == Purpose ==
