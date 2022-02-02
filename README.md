@@ -1,8 +1,7 @@
-Software 2 Database Management GUI
-
+# Software 2 Database Management GUI
 author: Jeremy Hennessy
 
-student application version: 1.0
+application version: 1.0
 
 date: 6/8/2021
 
