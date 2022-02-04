@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"DatabaseManagementGUI"},{"l":"DatabaseManagementGUI.Dao"},{"l":"DatabaseManagementGUI.Model"},{"l":"DatabaseManagementGUI.Utility"},{"l":"DatabaseManagementGUI.View_Controller"}]
