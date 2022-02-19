@@ -1,0 +1,119 @@
+/**
+ ******************  Script Configuration ******************
+ */
+buildscript {
+  repositories {
+    jcenter()
+    gradlePluginPortal()
+
+    maven {
+      url "https://sandec.jfrog.io/artifactory/repo"
+    }
+  }
+
+
+  dependencies {
+    classpath 'de.gliderpilot.gradle.jnlp:gradle-jnlp-plugin:+'
+
+    classpath 'mysql:mysql-connector-java:8.0.22'
+    classpath 'com.sandec.jpro:jpro-plugin-gradle:2021.2.2'
+    classpath 'org.openjfx:javafx-plugin:0.0.11'
+    classpath 'org.javamodularity:moduleplugin:1.8.10' // workaround for https://discuss.gradle.org/t/unable-to-build-project-with-gradle-7-3-1-on-java-17/41601
+  }
+
+}
+
+/**
+ ******************  Java Configuration ******************
+ */
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'org.openjfx.javafxplugin'
+apply plugin: 'de.gliderpilot.jnlp'
+
+
+compileJava {
+  sourceCompatibility = 11
+  targetCompatibility = 11
+}
+
+repositories {
+  jcenter()
+}
+
+javafx {
+    version = '17.0.1'
+    modules = [ 'javafx.base', 'javafx.graphics', 'javafx.controls', 'javafx.fxml', 'javafx.media', 'javafx.web' ]
+}
+
+jnlp {
+  useVersions = true
+  withXml {
+    information {
+      title project.name
+      vendor project.group ?: project.name
+    }
+    security {
+      'all-permissions'()
+    }
+  }
+  signJarParams = [keystore: '../keystore.ks', alias: 'myalias', storepass: 'mystorepass']
+
+}
+
+/**
+ ******************  jpro Configuration ******************
+ */
+apply plugin: 'com.sandec.jpro'
+
+
+/**
+ * App Main Class
+ */
+//mainClassName = 'com.jpro.hellojpro.HelloJPro'
+mainClassName = 'com.jpro.DatabaseManagementGUI.clientScheduler'
+
+/**
+ * jpro settings
+ */
+jpro {
+  // for debugging
+  //JVMArgs << '-agentlib:jdwp=transport=dt_socket,server=n,address=5006,suspend=y'
+
+  JVMArgs << '-Xmx1000m'
+
+
+  //jpro server port
+  port = 8080
+
+}
+
+
+compileJava.doLast {
+  copy {
+    from "src/main/java"
+    include "**/*.properties"
+    into "$buildDir/classes/java/main"
+  }
+}
+
+sourceSets {
+  main {
+    resources {
+      srcDirs = ["src/main/java"]
+      includes = ["**/*.fxml"]
+    }
+  }
+}
+
+dependencies{
+  compile('mysql:mysql-connector-java:8.0.22')
+}
+
+task genkey {
+  doLast {
+    ant.genkey(alias: 'myalias', storepass: 'mystorepass', dname: 'CN=Ant Group, OU=Jakarta Division, O=Apache.org, C=US')
+  }
+}
+
+
